@@ -1,3 +1,5 @@
+npm install next react react-dom tailwindcss@latest postcss@latest autoprefixer@latest remark remark-html matter
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
