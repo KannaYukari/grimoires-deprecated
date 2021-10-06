@@ -1,0 +1,10 @@
+[default]
+name=Default
+runtime=host
+config-opts=
+run-opts=
+prefix=/home/kanna/.cache/gnome-builder/install/grimoires-main/host
+app-id=
+postbuild=
+prebuild=
+default=true
