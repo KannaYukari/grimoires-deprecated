@@ -1,24 +1,31 @@
 import Default from '../../src/templates/Default';
 import getAllPostsByCategory from '../../scripts/blog/getAllPostsByCategory';
 import PostsList from '../../src/patterns/PostsList';
+import getCategories from '../../_data/categories'
+
+const categories = [];
+const categoriesInfo = getCategories();
+categoriesInfo.forEach((category)=>{
+  categories.push(category.slug)
+})
 
 export default function Category({category, posts}) {
   return(
-    <Default title={category}>
-      <section className='m-4 p-2' id='{category}-section'>
-        <h1 className='text-3xl'>Postagens da seção: {category}</h1>
-        <PostsList id={category} posts={posts}/>
+    <Default title={category.title}>
+      <section className='m-4 p-2' id='{category.slug}-section'>
+        <h1 className='text-3xl'>Postagens da seção: {category.title}</h1>
+        <PostsList id={category.slug} posts={posts}/>
       </section>
     </Default>
   )
 }
 
 export async function getStaticProps(context) {
-  const category = context.params.category
-  let posts = getAllPostsByCategory(category);
+  const categoryInfo = categoriesInfo.find( category => category.slug === context.params.category );
+  let posts = getAllPostsByCategory(categoryInfo.slug);
   return {
     props: {
-      category: category,
+      category: categoryInfo,
       posts: posts.map((post)=>(
         {
           title: post.metadata.title,
@@ -28,16 +35,14 @@ export async function getStaticProps(context) {
         }
       ))
     },
-    // revalidate: 9999999
   }
 }
 
 export async function getStaticPaths(){
-  let categories = ['novidades', 'diario', 'educativo', 'recomendacao']
-  categories = categories.map((category) => ({params: {category}}))
+  const paths = categories.map((category) => ({params: {category}}))
 
   return {
-    paths: categories,
+    paths: paths,
     fallback: false
   }
 }

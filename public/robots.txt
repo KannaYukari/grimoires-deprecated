@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.grimoires.tk
+
+# Sitemaps
+Sitemap: https://www.grimoires.tk/sitemap.xml
