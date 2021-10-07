@@ -7,7 +7,7 @@ export default function Head(props) {
     if (typeof Title !== 'undefined') {
         pageTitle = Title+' - '+pageTitle;
     }
-    
+    const head = props.children
     return (
         <NextHead>
             <title>{pageTitle}</title>
@@ -20,8 +20,7 @@ export default function Head(props) {
             <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5"/>
             <meta name="msapplication-TileColor" content="#da532c"/>
             <meta name="theme-color" content="#ffffff"/>
-
-            {props.children}
+            {head}
         </NextHead>
     );
 }
